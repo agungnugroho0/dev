@@ -4,13 +4,14 @@ require '../config/admin.php';
 $so = $konek->query('SELECT id_so,so,foto_so FROM SO');
 $so2 = $konek->query("SELECT  so.id_so,so.so,so.foto_so,job.* FROM SO JOIN job ON so.id_so = job.id_so");
 $pesan = '';
+$errors = '';
 if (isset($_GET['status']) && $_GET['status'] == 'sudah') {
     $pesan = "OK";
 } else if (isset($_GET['status']) && $_GET['status'] == 'hapus') {
     $pesan = "TERHAPUS SUDAH";
 }
 if (isset($_GET['error'])) {
-    echo htmlspecialchars($_GET['error']);
+    $errors =  htmlspecialchars($_GET['error']);
 }
 ?>
 <!DOCTYPE html>
@@ -118,15 +119,6 @@ if (isset($_GET['error'])) {
             }
         });
     }
-    // Memanggil SweetAlert jika ada status message
-    <?php if ($pesan): ?>
-        Swal.fire({
-            icon: 'success',
-            title: '<?= $pesan ?>',
-            showConfirmButton: false,
-            timer: 1500
-        });
-    <?php endif; ?>;
 
     function inputTagihan(nis) {
         Swal.fire({
@@ -175,4 +167,21 @@ if (isset($_GET['error'])) {
         }
         input.value = value;
     }
+
+        // Memanggil SweetAlert jika ada status message
+        <?php if ($pesan): ?>
+        Swal.fire({
+            icon: 'success',
+            title: '<?= $pesan ?>',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    <?php endif; ?>;
+        // Memanggil SweetAlert jika ada status message
+        <?php if ($errors): ?>
+        Swal.fire({
+            icon: 'error',
+            title: '<?= $errors ?>'
+        });
+    <?php endif; ?>;
 </script>
