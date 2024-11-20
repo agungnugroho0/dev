@@ -9,6 +9,9 @@ if (isset($_GET['status']) && $_GET['status'] == 'sudah') {
 } else if (isset($_GET['status']) && $_GET['status'] == 'hapus') {
     $pesan = "TERHAPUS SUDAH";
 }
+if (isset($_GET['error'])) {
+    echo htmlspecialchars($_GET['error']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -133,26 +136,34 @@ if (isset($_GET['status']) && $_GET['status'] == 'sudah') {
             id="tagihan" class="mb-3 appearance-none border w-full rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" 
             placeholder="Masukkan sisa tagihan" 
             oninput="formatCurrency(this)" 
-            maxlength="15">`,
+            maxlength="15">
+            Tgl Lolos <br>
+            <input 
+            type="date" 
+            id="tgl_lolos" class="mb-3 appearance-none border w-full rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" 
+             >`,
             showCancelButton: true,
             confirmButtonText: 'GASKEUN',
             cancelButtonText: 'Batal',
             cancelButtonColor: '#d33',
             preConfirm: () => {
                 const tagihan = document.getElementById('tagihan').value.replace(/[.,]/g, ''); //hapus titik dan koma
+                const tgl_lolos = document.getElementById('tgl_lolos').value;
                 if (!tagihan) {
                     Swal.showValidationMessage('Tagihan kosong!');
                 }
                 return {
-                    tagihan
+                    tagihan,
+                    tgl_lolos
                 };
             }
         }).then((result) => {
             if (result.isConfirmed) {
                 const tagihan = result.value.tagihan;
+                const tgl_lolos = result.value.tgl_lolos;
 
                 // Redirect ke halaman lwawancara.php dengan parameter
-                window.location.href = `../model/lwawancara.php?nis=${nis}&tagihan=${tagihan}`;
+                window.location.href = `../model/lwawancara.php?nis=${nis}&tagihan=${tagihan}&tgl_lolos=${tgl_lolos}`;
             }
         });
     }
