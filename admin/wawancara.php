@@ -31,11 +31,11 @@ if (isset($_GET['status']) && $_GET['status'] == 'sudah') {
                 <div class="flex md:col-span-3">
                     <p class="font-bold text-sky-950 text-lg self-center ">DAFTAR JOBS</p>
                     <a href="./view/add_job.php" class="bg-blue-900 self-center rounded-lg w-6 h-5 ml-2 cursor-default hover:bg-red-800 active:scale-95 transition ">
-                        <p class="text-white font-bold translate-x-1.5 -translate-y-1">+</p>
+                        <p class="text-white font-bold translate-x-1.5 -translate-y-0.5 md:-translate-y-1">+</p>
                     </a>
                 </div>
 
-                <!-- konten -->
+                <!-- JOBS -->
                 <?php
                 while ($hasil = $so2->fetch_assoc()) {
                     $id_jobs = $hasil['id_job'] ?>
@@ -72,7 +72,7 @@ if (isset($_GET['status']) && $_GET['status'] == 'sudah') {
                 <?php } ?>
 
 
-                <!-- konten -->
+                <!-- JOBS -->
 
             </div>
         </div>
@@ -82,7 +82,7 @@ if (isset($_GET['status']) && $_GET['status'] == 'sudah') {
             <div class="flex">
                 <p class="font-bold text-sky-950 text-lg self-center">DAFTAR SO</p>
                 <a href="#" class="bg-red-900 self-center rounded-lg w-6 h-5 ml-2 cursor-default hover:bg-red-800 active:scale-95 transition ">
-                    <p class="text-white font-bold translate-x-1.5 -translate-y-1">+</p>
+                    <p class="text-white font-bold translate-x-1.5 -translate-y-0.5 md:-translate-y-1">+</p>
                 </a>
             </div>
             <?php while ($hasil_so = $so->fetch_assoc()) { ?>

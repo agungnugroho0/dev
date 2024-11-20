@@ -1,16 +1,16 @@
 <?php  
-    include __DIR__ . "../../config/koneksi.php";
+include __DIR__ . "../../config/koneksi.php";
+include "phpqrcode/qrlib.php";
     
     session_start();
     if($_SESSION['level']==""){
         header("location:../index.php?pesan=gagal");
         exit;
     };
-    $username  = $_SESSION['username'];
-    $level  = $_SESSION['level'];
-    $id_kelas = $_SESSION['kelas'];
-    $nama = $_SESSION['nama'];
-    include "phpqrcode/qrlib.php";
+    // $username  = $_SESSION['username'];
+    // $level  = $_SESSION['level'];
+    // $id_kelas = $_SESSION['kelas'];
+    // $nama = $_SESSION['nama'];
     
     $nis = $_GET['nis'];
     $siswa = "SELECT * FROM siswa JOIN kelas ON siswa.id_kelas = kelas.id_kelas WHERE nis  = '$nis'";
@@ -34,7 +34,13 @@
 
 </head>
 <body>
-    <?php include '../guru/menu.html' ?>
+    <?php
+    if ($_SESSION['level']=="guru"){
+        include '../guru/menu.html';
+    } elseif($_SESSION['level']=="admin"){
+        include '../admin/menu.html';
+    }
+    ?>
     <div  class="grid md:grid-cols-6 sm:grid-cols-3 gap-3 sm:mx-10 mx-3 *:p-3 mt-4">
         <div class="bg-slate-200 sm:col-span-4 sm:order-first">Data Siswa
         <?php
