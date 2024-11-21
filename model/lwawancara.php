@@ -7,10 +7,14 @@ $tagihan = filter_input(INPUT_GET, 'tagihan', FILTER_SANITIZE_NUMBER_FLOAT, FILT
 $keterangan = "biaya SO";
 $status_tagihan = "belum lunas";
 
-$queryPindah = $konek->prepare("INSERT INTO lolos SELECT * FROM siswa WHERE nis = ?");
+$queryPindah = $konek->prepare("INSERT INTO lolos SELECT * FROM siswa WHERE nis = ?"); 
 $queryPindah->bind_param('i', $nis);
 
 if ($queryPindah->execute()) {
+    $queryUpdate = $konek->prepare("UPDATE lolos SET status = 'lolos' WHERE nis = ?");
+    $queryUpdate->bind_param('i', $nis);
+    $queryUpdate->execute();
+
     $awalantagihan = str_replace('-', '', date('Y-m-d'));
     $queryid = $konek->query("SELECT MAX(id_tagihan) AS tgh FROM tagihan WHERE id_tagihan LIKE '$awalantagihan%'");
 
