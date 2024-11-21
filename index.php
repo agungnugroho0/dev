@@ -35,6 +35,7 @@
 </head>
 
 <body>
+    <p>Pesan dari rumah</p>
     <div class="relative w-full min-h-screen md:flex items-center justify-center bg-white md:bg-black ">
         <!-- Pseudo-elemen untuk background blur -->
         <div class="hidden md:block absolute inset-0 bg-[url('https://png.pngtree.com/thumb_back/fh260/background/20230426/pngtree-woman-holding-a-wooden-board-with-japanese-calligraphy-image_2520973.jpg')] bg-cover bg-center blur-lg "></div>

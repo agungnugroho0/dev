@@ -4,10 +4,14 @@ require '../config/admin.php';
 $so = $konek->query('SELECT id_so,so,foto_so FROM SO');
 $so2 = $konek->query("SELECT  so.id_so,so.so,so.foto_so,job.* FROM SO JOIN job ON so.id_so = job.id_so");
 $pesan = '';
+$errors = '';
 if (isset($_GET['status']) && $_GET['status'] == 'sudah') {
     $pesan = "OK";
 } else if (isset($_GET['status']) && $_GET['status'] == 'hapus') {
     $pesan = "TERHAPUS SUDAH";
+}
+if (isset($_GET['error'])) {
+    $errors =  htmlspecialchars($_GET['error']);
 }
 ?>
 <!DOCTYPE html>
@@ -115,15 +119,6 @@ if (isset($_GET['status']) && $_GET['status'] == 'sudah') {
             }
         });
     }
-    // Memanggil SweetAlert jika ada status message
-    <?php if ($pesan): ?>
-        Swal.fire({
-            icon: 'success',
-            title: '<?= $pesan ?>',
-            showConfirmButton: false,
-            timer: 1500
-        });
-    <?php endif; ?>;
 
     function inputTagihan(nis) {
         Swal.fire({
@@ -133,26 +128,34 @@ if (isset($_GET['status']) && $_GET['status'] == 'sudah') {
             id="tagihan" class="mb-3 appearance-none border w-full rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" 
             placeholder="Masukkan sisa tagihan" 
             oninput="formatCurrency(this)" 
-            maxlength="15">`,
+            maxlength="15">
+            Tgl Lolos <br>
+            <input 
+            type="date" 
+            id="tgl_lolos" class="mb-3 appearance-none border w-full rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" 
+             >`,
             showCancelButton: true,
             confirmButtonText: 'GASKEUN',
             cancelButtonText: 'Batal',
             cancelButtonColor: '#d33',
             preConfirm: () => {
                 const tagihan = document.getElementById('tagihan').value.replace(/[.,]/g, ''); //hapus titik dan koma
+                const tgl_lolos = document.getElementById('tgl_lolos').value;
                 if (!tagihan) {
                     Swal.showValidationMessage('Tagihan kosong!');
                 }
                 return {
-                    tagihan
+                    tagihan,
+                    tgl_lolos
                 };
             }
         }).then((result) => {
             if (result.isConfirmed) {
                 const tagihan = result.value.tagihan;
+                const tgl_lolos = result.value.tgl_lolos;
 
                 // Redirect ke halaman lwawancara.php dengan parameter
-                window.location.href = `../model/lwawancara.php?nis=${nis}&tagihan=${tagihan}`;
+                window.location.href = `../model/lwawancara.php?nis=${nis}&tagihan=${tagihan}&tgl_lolos=${tgl_lolos}`;
             }
         });
     }
@@ -164,4 +167,21 @@ if (isset($_GET['status']) && $_GET['status'] == 'sudah') {
         }
         input.value = value;
     }
+
+        // Memanggil SweetAlert jika ada status message
+        <?php if ($pesan): ?>
+        Swal.fire({
+            icon: 'success',
+            title: '<?= $pesan ?>',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    <?php endif; ?>;
+        // Memanggil SweetAlert jika ada status message
+        <?php if ($errors): ?>
+        Swal.fire({
+            icon: 'error',
+            title: '<?= $errors ?>'
+        });
+    <?php endif; ?>;
 </script>
