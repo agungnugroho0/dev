@@ -1,7 +1,7 @@
 <?php
 $lolos = $konek -> query("SELECT  log_lolos.*,lolos.nama FROM log_lolos JOIN lolos ON log_lolos.nis = lolos.nis "); ?>
 <table class="w-full text-sm text-left mt-5">
-<thead class="text-md text-gray-700 uppercase bg-gray-50">
+<thead class="text-md text-gray-700 uppercase bg-gray-100">
 <tr>
     <th scope="col" class="px-6 py-3">No</th>   
     <th scope="col" class="px-6 py-3">Nama</th>

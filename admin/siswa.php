@@ -31,8 +31,8 @@ require '../config/admin.php';
     </div>
 
 <div class="tab-contents">
-    <div id="content1" class="tab-content "><?php include './view/aktif.php'?></div>
-    <div id="content2" class="tab-content active"><?php include './view/lolos.php'?></div>
+    <div id="content1" class="tab-content active"><?php include './view/aktif.php'?></div>
+    <div id="content2" class="tab-content "><?php include './view/lolos.php'?></div>
     <div id="content3" class="tab-content">Content 3</div>
     <div id="content4" class="tab-content">Content 4</div>
 </div>
