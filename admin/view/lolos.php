@@ -22,7 +22,7 @@ $lolos = $konek -> query("SELECT  log_lolos.*,lolos.nama FROM log_lolos JOIN lol
             <td class="px-6 py-2"><?= $lolos2['tgl_lolos'] ?></td>
             <td class="px-6 py-2"><?= $lolos2['job'] ?></td>
             <td class="px-6 py-2"><?= $lolos2['so'] ?></td>
-            <td class="px-6 py-2"><a href="../features/detail_siswa.php?nis=<?=$lolos2['nis']?>">Detail</a></td>
+            <td class="px-6 py-2"><a href="../features/detail_siswa.php?nis=<?=$lolos2['nis']?>&lolos=ya">Detail</a></td>
         </tr>
         <?php
         }
