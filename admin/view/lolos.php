@@ -1,18 +1,31 @@
 <?php
-
-// echo "lolos";
-$lolos = $konek -> query("SELECT  log_lolos.*,lolos.nama FROM log_lolos JOIN lolos ON log_lolos.nis = lolos.nis ");
-while ($lolos2 = $lolos -> fetch_assoc()) { ?>
-
-
-<div class="flex flex-wrap max-w-screen-xl gap-2 mx-2 mt-2">
-    <a href="" class="md:w-2/6 w-full cursor-default"><div class="bg-sky-50 hover:bg-sky-100 active:scale-95 transition rounded-lg px-2 py-1">
-        <span class="font-medium"><?= $lolos2['nama']?>&nbsp;|</span>
-        <span class="font-normal"><?= $lolos2['tgl_lolos']?></span>
-        <span class="font-normal"><?= $lolos2['job']?></span>
-
-    </div></a>
-</div>
-<?php
-}
-?>
+$lolos = $konek -> query("SELECT  log_lolos.*,lolos.nama FROM log_lolos JOIN lolos ON log_lolos.nis = lolos.nis "); ?>
+<table class="w-full text-sm text-left mt-5">
+<thead class="text-md text-gray-700 uppercase bg-gray-50">
+<tr>
+    <th scope="col" class="px-6 py-3">No</th>   
+    <th scope="col" class="px-6 py-3">Nama</th>
+    <th scope="col" class="px-6 py-3">Tanggal lolos</th>  
+    <th scope="col" class="px-6 py-3">Job</th>    
+    <th scope="col" class="px-6 py-3">SO</th>
+    <th scope="col" class="px-6 py-3"></th>
+</tr>    
+</thead>
+<tbody>
+    <?php 
+    $no = 1;
+    while ($lolos2 = $lolos -> fetch_assoc()) { 
+    ?>
+        <tr class="bg-white border-b hover:bg-gray-50 cursor-default">
+            <td class="px-6 py-2"><?= $no++; ?></td>
+            <td class="px-6 py-2"><?= $lolos2['nama']?></td>
+            <td class="px-6 py-2"><?= $lolos2['tgl_lolos'] ?></td>
+            <td class="px-6 py-2"><?= $lolos2['job'] ?></td>
+            <td class="px-6 py-2"><?= $lolos2['so'] ?></td>
+            <td class="px-6 py-2"><a href="../features/detail_siswa.php?nis=<?=$lolos2['nis']?>">Detail</a></td>
+        </tr>
+        <?php
+        }
+        ?>
+</tbody>
+</table>
