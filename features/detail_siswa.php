@@ -160,7 +160,7 @@ include "phpqrcode/qrlib.php";
                 </div>
             </div>
             <div class=" border-2 p-3 rounded-md items-center mt-2 md:ml-3 flex flex-wrap">
-                <a href="#" class="bg-red-800 px-2 py-0 text-md rounded-md text-white font-semibold active:scale-95 transition cursor-pointer">IKUT JOB</a>
+                <a href="../admin/view/add_wawancara.php?nis=<?= $data_siswa['nis']?>" class="bg-red-800 px-2 py-0 text-md rounded-md text-white font-semibold active:scale-95 transition cursor-pointer">IKUT JOB</a>
                 <a href="#" class="bg-red-800 px-2 py-0 text-md rounded-md text-white font-semibold active:scale-95 transition cursor-pointer ml-2">KEAKTIFAN (beta)</a>
             </div>
             <div class=" border-2 p-3 rounded-md items-center mt-2 md:ml-3 flex flex-wrap">
