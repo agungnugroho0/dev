@@ -43,8 +43,8 @@ if (isset($_GET['error'])) {
                 <?php
                 while ($hasil = $so2->fetch_assoc()) {
                     $id_jobs = $hasil['id_job'] ?>
-                    <div class="grid rounded-xl shadow-md p-3">
-                        <div class="flex border-b-2">
+                    <div class="flex flex-col rounded-xl shadow-md p-3">
+                        <div class="flex border-b-2 shrink-0">
                             <div class="bg-contain bg-center bg-no-repeat w-8 h-8 rounded-full" style="background-image:url(../model/img_so/<?= $hasil['foto_so'] ?>);"></div>
                             <p class='font-medium basis-full ml-2'><?= $hasil['job'] ?></p>
                             <a href='./view/edit_job.php?id_job=<?= $id_jobs ?>' class='mr-2'><img src='../image/pensil.png' class='w-5 translate-y-1 '></a>
@@ -54,7 +54,7 @@ if (isset($_GET['error'])) {
                             <p class=""><?= $hasil['perusahaan'] ?>&nbsp;|</p>
                             <p class="">&nbsp;<?= $hasil['tgl_job'] ?></p>
                         </div>
-                        <div class="divide-y divide-gray-200 *:mt-1">
+                        <div class="divide-y divide-gray-200 *:mt-1 grid grid-cols-1">
                             <?php
                             $anak = $konek->query("SELECT job.*, siswa.nis, wawancara.*, siswa.nama, siswa.foto FROM job JOIN wawancara ON job.id_job = wawancara.id_job JOIN siswa ON wawancara.nis = siswa.nis WHERE job.id_job = $id_jobs");
                             if ($anak->num_rows > 0) {
@@ -68,7 +68,7 @@ if (isset($_GET['error'])) {
 
                             <?php }
                             } else {
-                                echo "<div class='font-medium text-slate-400'>Belum Ada Peserta</div>";
+                                echo "<div class='font-medium text-slate-400 items-start'>Belum Ada Peserta</div>";
                             } ?>
 
                         </div>

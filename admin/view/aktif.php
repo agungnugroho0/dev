@@ -41,7 +41,7 @@
                         echo "<div class='flex hover:bg-slate-50 active:scale-95 py-0.5 transition'>";
                         
                         if ($siswa1['id_job'] !== null){
-                            echo  "<div class='bg-red-800 w-1 mr-1'>&nbsp;</div>";
+                            echo  "<div class='bg-green-800 w-1 mr-1'>&nbsp;</div>";
                         } else {
                             echo  "<div class='bg-white w-1 mr-1'>&nbsp;</div>";
                         } 

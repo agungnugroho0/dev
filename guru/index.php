@@ -13,7 +13,8 @@ if($_SESSION['level']==""){
     $pilihkelas = mysqli_query($konek,"SELECT * from kelas WHERE id_kelas = '$id_kelas'");
     $datakelas = mysqli_fetch_assoc($pilihkelas);
     $kelas = $datakelas["kelas"];
-    $siswa = "SELECT * FROM siswa JOIN kelas ON siswa.id_kelas = kelas.id_kelas WHERE siswa.id_kelas = '$id_kelas' ORDER BY nama";
+    // $siswa = "SELECT * FROM siswa JOIN kelas ON siswa.id_kelas = kelas.id_kelas WHERE siswa.id_kelas = '$id_kelas' ORDER BY nama";
+    $siswa = "SELECT siswa.nis, siswa.nama,siswa.gender,siswa.tgl,wawancara.id_job,kelas.* FROM siswa LEFT JOIN wawancara ON siswa.nis = wawancara.nis JOIN kelas ON siswa.id_kelas = kelas.id_kelas WHERE kelas.id_kelas = '$id_kelas' ORDER BY nama";
     $staff = $konek ->query("SELECT staff.*,kelas.* FROM staff LEFT JOIN kelas ON staff.id_kelas = kelas.id_kelas WHERE staff.username= '$username' ");
     $staff_hasil = $staff->fetch_assoc();
 
@@ -43,9 +44,16 @@ if($_SESSION['level']==""){
         </div>
         <hr>
         <p class="font-bold text-xl pt-3 pb-3">Siswa Kelas <?=$kelas?></p>
+        <div class="flex items-center">
+            <div class="bg-green-800 w-3 h-3"></div>
+            <p class="pl-1 pr-3 text-sm">Mengikuti Job</p>
+            <div class="bg-red-800 w-3 h-3"></div>
+            <p class="pl-1 pr-3 text-sm">Siswa Cuti</p>
+        </div>
         <table class=" w-full divide-y divide-gray-200">
             <thead>
                 <tr>
+                    <th class="">&nbsp;</th>
                     <th class="">&nbsp;</th>
                     <th class="px-3 py-3 font-bold hidden sm:inline-block text-start">NIS</th>
                     <th class="px-3 py-3 font-bold text-start sm:w-96" >NAMA</th>
@@ -57,19 +65,20 @@ if($_SESSION['level']==""){
             <tbody class=" divide-y divide-gray-200">
                 <?php
                     //siswa
+                    $no = 1;
                     $data_siswa = mysqli_query($konek, $siswa);
                     while ($data = mysqli_fetch_assoc($data_siswa)){ ?>
                     <!-- tanda Job -->
                     <tr class="hover:bg-slate-50">
-                        <?php //if ($data['job']>0){
-                            //echo "<td class='w-1 bg-red-800'></td>";
-                        //} else {
-                            //echo "<td class='w-1'></td>";
-                        //}
+                        <?php 
+                        if ($data['id_job']>0){
+                            echo "<td class='w-1 bg-green-800'></td>";
+                        } else {
                             echo "<td class='w-1'></td>";
+                        };
 
                          ?>
-                    
+                    <td class="text-start px-3 py-3 text-start max-w-1"><?php echo $no; ?></td>
                     <td class="hidden sm:inline-block text-start px-3 py-3 text-red-900"><?php echo $data['nis'];?></td>
                     <td class="text-start px-3 py-3 text-wrap sm:text-nowrap"><?php echo $data['nama'];?></td>
                     <td class="text-start px-3 py-3 text-wrap sm:text-nowrap"><?php echo $data['gender'];?></td>
@@ -84,7 +93,7 @@ if($_SESSION['level']==""){
                     <td class="text-start px-3 py-3 text-wrap text-red-800 font-bold"><a href="../features/detail_siswa.php?nis=<?php  echo $data['nis'];?>">Detail</a></td>
 
                     </tr>
-                <?php }; ?>
+                <?php $no++; }; ?>
             </tbody>
         </table>
         ©️ 2024 v 1.2.1
