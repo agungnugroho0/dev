@@ -27,7 +27,7 @@ require '../config/admin.php';
         <button id="tab1" class="tab-button font-medium border-b-2 border-red-800" data-target="content1">Siswa</button>
         <button id="tab2" class="tab-button" data-target="content2">Lolos</button>
         <button id="tab3" class="tab-button" data-target="content3">Pembayaran</button>
-        <button id="tab4" class="tab-button" data-target="content4">Coming Soon</button>
+        <button id="tab4" class="tab-button" data-target="content4">Absensi</button>
     </div>
 
 <div class="tab-contents">

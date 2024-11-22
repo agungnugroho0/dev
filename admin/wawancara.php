@@ -56,7 +56,7 @@ if (isset($_GET['error'])) {
                         </div>
                         <div class="divide-y divide-gray-200 *:mt-1 grid grid-cols-1">
                             <?php
-                            $anak = $konek->query("SELECT job.*, siswa.nis, wawancara.*, siswa.nama, siswa.foto FROM job JOIN wawancara ON job.id_job = wawancara.id_job JOIN siswa ON wawancara.nis = siswa.nis WHERE job.id_job = $id_jobs");
+                            $anak = $konek->query("SELECT job.*, siswa.nis, wawancara.*, siswa.nama, siswa.foto FROM job JOIN wawancara ON job.id_job = wawancara.id_job JOIN siswa ON wawancara.nis = siswa.nis WHERE job.id_job = '$id_jobs'");
                             if ($anak->num_rows > 0) {
                                 while ($hasil2 = $anak->fetch_assoc()) {
                             ?>
