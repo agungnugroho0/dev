@@ -48,7 +48,7 @@ if (isset($_GET['error'])) {
                             <div class="bg-contain bg-center bg-no-repeat w-8 h-8 rounded-full" style="background-image:url(../model/img_so/<?= $hasil['foto_so'] ?>);"></div>
                             <p class='font-medium basis-full ml-2'><?= $hasil['job'] ?></p>
                             <a href='./view/edit_job.php?id_job=<?= $id_jobs ?>' class='mr-2'><img src='../image/pensil.png' class='w-5 translate-y-1 '></a>
-                            <a href='#' onclick="confirmDelete(<?= $id_jobs ?>)"><img src='../image/sampah.png' class='w-5 translate-y-1'></a>
+                            <a href='#' onclick="confirmDelete('<?= $id_jobs ?>')"><img src='../image/sampah.png' class='w-5 translate-y-1'></a>
                         </div>
                         <div class="flex">
                             <p class=""><?= $hasil['perusahaan'] ?>&nbsp;|</p>
