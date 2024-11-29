@@ -63,8 +63,8 @@
         <div class="bg-white shadow-md p-3 m-3 rounded-lg">
             <div class="flex">
                 <p>Daftar Kelas</p>
-                <a href="#" class="bg-red-900 self-center rounded-lg w-6 h-5 ml-2 cursor-default hover:bg-red-800 active:scale-95 transition ">
-                    <p class="text-white font-bold translate-x-1.5 -translate-y-1">+</p>
+                <a href="#" >
+                <img src="../image/add.png" alt="" class="w-4 h-4 translate-y-1 ml-2">
                 </a>
             </div>
             <?php
