@@ -79,7 +79,7 @@ if($_SESSION['level']==""){
 
                          ?>
                     <td class="text-start px-3 py-3 max-w-1"><?php echo $no; ?></td>
-                    <td class="hidden sm:inline-block text-start px-3 py-3 text-red-900"><?php echo $data['nis'];?></td>
+                    <td class="hidden sm:inline-block text-start pl-5 py-3 text-red-900"><?php echo $data['nis'];?></td>
                     <td class="text-start px-3 py-3 text-wrap sm:text-nowrap"><?php echo $data['nama'];?></td>
                     <td class="text-start px-3 py-3 text-wrap sm:text-nowrap"><?php echo $data['gender'];?></td>
                     <td class="text-start px-3 py-3">

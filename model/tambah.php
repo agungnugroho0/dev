@@ -19,7 +19,11 @@ if ($result) {
 }
 
 // Ambil data dari form
-$id_kelas = "4";
+if (isset($_POST['id_kelas'])) {
+    $id_kelas = $_POST['id_kelas'];
+} else {
+    $id_kelas = "4";
+}
 $nis = $nis_baru;
 $nama = strtoupper(string: $_POST['nama_lengkap']);
 
@@ -43,8 +47,8 @@ if ($row_check['count'] > 0) {
     $kelurahan = $_POST['kelurahan'];
     $rt = $_POST['rt'];
     $rw = $_POST['rw'];
-    $status = "";
-    $darah = "";
+    $status = $_POST['status'];
+    $darah = $_POST['darah'];
     $bb = "";
     $tb = "";
     $merokok = "";
@@ -72,7 +76,11 @@ if ($row_check['count'] > 0) {
 
     // Menjalankan query
     if ($konek->query($query_insert) === TRUE) {
-        header("Location: ../siswa.php?sukses");
+        if (isset($_POST['id_kelas'])) {
+            header("Location: ../admin/siswa.php?sukses");
+        } else {
+            header("Location: ../siswa.php?sukses");
+        }
     } else {
         echo "Error: " . $query_insert . "<br>" . $konek->error;
     }

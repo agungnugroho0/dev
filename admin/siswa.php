@@ -1,6 +1,9 @@
 <?php
 require_once '../config/koneksi.php';
 require '../config/admin.php';
+if (isset($_GET['sukses'])) {
+    echo "<script>alert('Tambah Siswa berhasil');</script>";
+}
 ?>
 
 <!DOCTYPE html>

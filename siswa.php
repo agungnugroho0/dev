@@ -19,11 +19,19 @@
                 echo "<script>alert('Siswa bernama " . htmlspecialchars($_GET['nama']) . " sudah terdaftar');</script>";
             } elseif (isset($_GET['sukses'])) {
                 echo "<script>alert('Pendaftaran Berhasil, Selamat Belajar');</script>";
+            } elseif (isset($_GET['foto'])) {
+                echo "<script>alert('Ukuran foto terlalu besar');</script>";
             } ?>
         </center>
     </div>
 
     <form action="./model/tambah.php" method="POST" enctype="multipart/form-data" class="max-w-xl mx-auto px-5">
+        <?php 
+            if (isset($_GET['id_kelas'])) {
+                $id_kelas = $_GET['id_kelas'];
+                echo "<input type='text' name='id_kelas' value='$id_kelas' class='text-sm text-gray-500 bg-slate-100 border-b-2 border-gray-300 w-full py-2.5 pl-2 mb-5' readonly>";
+            }
+        ?>
         <div class="relative z-0 w-full mb-5 group">
             <input type="text" name="nama_lengkap" id="nama_lengkap" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-red-700 peer" placeholder=" " required />
             <label for="nama_lengkap" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-slate-800 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nama Lengkap</label>
@@ -100,21 +108,34 @@
                 <label for="rw" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-slate-800 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">RW</label>
             </div>
         </div>
+            <!-- <label for="status" class="block mt-3 mb-3 text-sm font-medium text-gray-900 "></label> -->
+        <select id="status" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 h-10 mb-5" name="status" required>
+            <option value="">Pilih Status</option>
+            <option value="SINGLE">Single</option>
+            <option value="MENIKAH">Menikah</option>
+            <option value="CERAI">Cerai</option>
+        </select>
+        <div class="grid md:grid-cols-2 md:gap-6">
+        <select id="gol" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 h-11 mb-5" name="darah" required>
+            <option value="">Pilih Golongan Darah</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="AB">AB</option>
+            <option value="O">O</option>
+            <option value="TIDAK TAU">Tidak Tau</option>
+        </select>
+        <!-- <select id="tangan" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 h-9 mb-5" name="tangan" required>
+            <option value="">Pilih Tangan Dominan</option>
+            <option value="KANAN">KANAN</option>
+            <option value="KIDAL">KIDAL / KIRI</option>
+        </select> -->
+    </div>
         <hr>
 
-        <input type="file" name="file">
+        <input type="file" name="file" id="fileInput" accept="image/*">
+        <p id="fileSizeMessage"></p>
         <!--
-    <input type="file" name="foto"><br>
-        
-    
-    <label for="status" class="block mt-3 mb-3 text-sm font-medium text-gray-900 "></label>
-    <select id="status" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 h-9 mb-5" name="status" required>
-        <option value="">Pilih Status</option>
-        <option value="SINGLE">Single</option>
-        <option value="MENIKAH">Menikah</option>
-        <option value="CERAI">Cerai</option>
-    </select>
-
+ 
             <div class="grid md:grid-cols-2 md:gap-6">
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="number" name="bb" id="bb" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-red-700 peer" placeholder=" " required />
@@ -126,21 +147,7 @@
                 </div>
             </div>
 
-    <div class="grid md:grid-cols-2 md:gap-6">
-        <select id="gol" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 h-9 mb-5" name="darah" required>
-            <option value="">Pilih Golongan Darah</option>
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="AB">AB</option>
-            <option value="O">O</option>
-            <option value="TIDAK TAU">Tidak Tau</option>
-        </select>
-        <select id="tangan" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 h-9 mb-5" name="tangan" required>
-            <option value="">Pilih Tangan Dominan</option>
-            <option value="KANAN">KANAN</option>
-            <option value="KIDAL">KIDAL / KIRI</option>
-        </select>
-    </div>
+
 
     <div class="grid md:grid-cols-2 md:gap-6">
         <select id="merokok" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 h-9 mb-5" name="merokok" required>
@@ -242,5 +249,22 @@
                 })
                 document.getElementById('kelurahan').innerHTML = tampung;
             })
+    });
+
+    const fileInput = document.getElementById('fileInput');
+    const fileSizeMessage = document.getElementById('fileSizeMessage');
+    fileInput.addEventListener('change', function() {
+        const file = fileInput.files[0]; // Ambil file pertama yang diupload
+        if (file) {
+            const fileSizeInMB = file.size / (1024 * 1024); // Ukuran dalam MB
+            if (fileSizeInMB > 2) { // Misalnya batas ukuran 2MB
+                fileSizeMessage.textContent = "Ukuran file terlalu besar! Maksimal 2MB.";
+                fileInput.value = ""; // Kosongkan input file
+            } else {
+                fileSizeMessage.textContent = "Ukuran file: " + fileSizeInMB.toFixed(2) + " MB";
+            }
+        } else {
+            fileSizeMessage.textContent = "";
+        }
     });
 </script>
